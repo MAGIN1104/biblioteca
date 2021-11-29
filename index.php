@@ -46,96 +46,49 @@ include_once "./source/models.php";
     <div class="container-fluid">
         <div class="row align-items-center justify-content-center text-center text-light ">
             <div class="col-md-8">
-                <h3 class="display-5"  text-shadow: 4px 4px 4px #aaa;">Lista de Libros</h3>
-            <table class="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">COD</th>
-                        <th scope="col">TITULO</th>
-                        <th scope="col">AUTOR</th>
-                        <th scope="col">ACCIÓN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+                <h3 class="display-5" text-shadow: 4px 4px 4px #aaa;">Lista de Libros</h3>
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">COD</th>
+                            <th scope="col">TITULO</th>
+                            <th scope="col">AUTOR</th>
+                            <th scope="col">ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
 
-                    if ($resultado->num_rows) {
-                        while ($fila = $resultado->fetch_assoc()) {
-                            echo '<tr>' .
-                                '<td scope="row">' . $fila['cod_libro'] . '</td>' .
-                                '<td>' . $fila['titulo'] . '</td>' .
-                                '<td>' . $fila['autor'] . '</td>' .
-                                '<td>' .
-                                '<form method="POST" action="./source/borrarLibro.php">' .
-                                '<input type="hidden" name="id_prestamo" value="' . $fila['cod_libro'] . '">'
-                    ?>
-                            <button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> </button>
-                            <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#modal_elibro<?php echo $fila['cod_libro']; ?>"> <i class="fas fa-edit"></i> </button>
-                            </form>
-                            </td>
-                            </tr>
-                    <?php
-                            include "./source/ModalEditar.php";
+                        if ($resultado->num_rows) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                echo '<tr>' .
+                                    '<td scope="row">' . $fila['cod_libro'] . '</td>' .
+                                    '<td>' . $fila['titulo'] . '</td>' .
+                                    '<td>' . $fila['autor'] . '</td>' .
+                                    '<td>' .
+                                    '<form method="POST" action="./source/borrarLibro.php">' .
+                                    '<input type="hidden" name="id_libro" value="' . $fila['cod_libro'] . '">' .
+                                    '<button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> </button>'.
+                                    '<button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#modal_elibro'.$fila['cod_libro'].'"> <i class="fas fa-edit"></i> </button>'.
+                                '</form>'
+                        ?>
+                                </td>
+                                </tr>
+                        <?php
+                                include "./source/ModalEditar.php";
+                            }
+                        } else {
+                            echo '<td>No hay registro</td>';
                         }
-                    } else {
-                        echo '<td>No hay registro</td>';
-                    }
-                    ?>
+                        ?>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
 
-    <!-- MODAL LIBROS -->
-    <div class="modal fade" id="modal_libro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content bg-dark text-light">
-                <div class="modal-header">
-                    <h5 class="display-5 lead" id=""><i class="fas fa-book-open"></i> Libros</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span class="fa-layers fa-fw">
-                            <i class="fa-inverse fas fa-times" data-fa-transform="shrink-6"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container mt-3 mb-3">
-                        <div class="row">
-                            <div class="col-md-10 offset-md-1">
-                                <!-- <h4>Lista de Libros</h4> -->
-                                <ul class="timeline">
-                                    <?php
-                                    if ($resultado->num_rows) {
-                                        // echo $resultado->fetch_assoc();
-                                        while ($fila = $resultado->fetch_assoc()) {
-                                            echo '<li>' .
-                                                '<a target="_blank" href="">' . $fila['titulo'] . ' (' . $fila['categoria'] . ')</a>' .
-                                                '<a href="" class="float-right">' . $fila['anio_publicacion'] . '</a>' .
-                                                '<p>' . '<strong>CÓDIGO: </strong>' . $fila['cod_libro'] . '<br /><strong>AUTOR: </strong>' . $fila['autor'] . '<br/ ><strong>EDITORIAL: </strong>' . $fila['editorial'] . '</p>' .
-                                                '<form method="POST" action="./source/borrarLibro.php">' .
-                                                '<input type="hidden" name="id_libro" value="' . $fila['cod_libro'] . '">' .
-                                                '<button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> Borrar</button>' .
-                                                '</form>' .
-                                                '</li>';
-                                        }
-                                    } else {
-                                        echo '<p>No hay datos</p>';
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div><!-- MODAL LIBROS -->
 
 
 
@@ -231,7 +184,7 @@ include_once "./source/models.php";
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Email:</label>
-                                        <input  type="text" name="email" class="form-control" id="recipient-name" required>
+                                        <input type="text" name="email" class="form-control" id="recipient-name" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Celular:</label>
