@@ -5,7 +5,7 @@
   }else{
         
    $sql="SELECT * FROM libro";
-   $sqldata="SELECT *FROM prestamo";
+   $sqldata="SELECT * FROM prestamo";
    $resultado = $conexion -> query($sql);
    $resultados=$conexion->query($sqldata);
    

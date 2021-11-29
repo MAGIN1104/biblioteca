@@ -3,12 +3,12 @@
     if($conexion->connect_errno){
            die('Se cayo los servicios');
     }else{
-        $sql="INSERT INTO prestamo(f_prestamo, f_devolucion, id_estudiante, id_libro) values ('"
-                .$_POST['f_prestamo']."','"
-                .$_POST['f_devolucion']."','"
-                .$_POST['id_estudiante']."',"
-                .$_POST['id_libro']
+        $sqlRes="INSERT INTO prestamo(f_prestamo, f_devolucion, id_estudiante, id_libro) values ('"
+                .$_POST['prestamo']."','"
+                .$_POST['devolucion']."','"
+                . strtoupper($_POST['estudiante'])."',"
+                .$_POST['libro']
                 .");";
-        $conexion->query($sql);
+        $conexion->query($sqlRes);
         header('Location:../');
     }
