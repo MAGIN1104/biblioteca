@@ -13,3 +13,4 @@
 
 
     $conexion = new mysqli($host,$user,$pass,$dbname);
+    if($conexion->connect_errno) die('Ups...! Problemas con el servidor...!'); 

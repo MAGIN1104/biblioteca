@@ -68,9 +68,9 @@ include_once "./source/models.php";
                                     '<td>' .
                                     '<form method="POST" action="./source/borrarLibro.php">' .
                                     '<input type="hidden" name="id_libro" value="' . $fila['cod_libro'] . '">' .
-                                    '<button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> </button>'.
-                                    '<button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#modal_elibro'.$fila['cod_libro'].'"> <i class="fas fa-edit"></i> </button>'.
-                                '</form>'
+                                    '<button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> </button>' .
+                                    '<button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#modal_elibro' . $fila['cod_libro'] . '"> <i class="fas fa-edit"></i> </button>' .
+                                    '</form>'
                         ?>
                                 </td>
                                 </tr>
@@ -224,19 +224,19 @@ include_once "./source/models.php";
                             <form method="POST" action="./source/registroReserva.php">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Fecha Salida:</label>
-                                    <input type="date" class="form-control" id="recipient-name" name="prestamo" required>
+                                    <input type="date" class="form-control" id="prestamo-name" name="prestamo" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Fecha Devolucion:</label>
-                                    <input type="date" class="form-control" id="recipient-name" name="devolucion" required>
+                                    <input type="date" class="form-control" id="devolucion-name" name="devolucion" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Codigo Estudiante:</label>
-                                    <input type="text" class="form-control" id="recipient-name" name="estudiante" required>
+                                    <input type="text" class="form-control" id="estudiante-name" name="estudiante" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Codigo Libro:</label>
-                                    <input type="number" class="form-control" id="recipient-name" name="libro" required>
+                                    <input type="number" class="form-control" id="libro-name" name="libro" required>
                                 </div>
                                 <div class="row justify-content-center">
                                     <input type="submit" class="submit btn btn-success" value="Solicitar Libro">
@@ -270,13 +270,12 @@ include_once "./source/models.php";
                                                 '<input type="hidden" name="id_prestamo" value="' . $fila['id_prestamo'] . '">' .
                                                 '<button type="submit" class="btn btn-danger"> <i class="fas fa-trash"></i> </button>' .
                                                 '</form>'
-                                                .'</td>' .
+                                                . '</td>' .
                                                 '</tr>';
                                         }
                                     } else {
                                         echo '<td>No hay registro</td>';
                                     }
-
                                     ?>
                                 </tbody>
                             </table>
